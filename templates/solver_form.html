@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quadratic Equation Solver</title>
     <style>
-      .red {
+      .red,
+      .error {
         color: red;
       }
     </style>
   </head>
+
   <body>
     <h1>Quadratic Equation Solver</h1>
     <form method="POST" name="solver">
-      {% if error %}
-      <p class="red">This equation does not have real number solution.</p>
-      {% endif %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <p>Please enter three coefficients of a quadratic equation:</p>
       <p>
         <input type="text" size="4" name="a" />x<sup>2</sup> +

@@ -1,8 +1,13 @@
 import math
-from typing import Union
 
 
-def quadratic(a: float, b: float, c: float) -> Union[tuple[float, float], None]:
+class NoRealRootsError(Exception):
+    """Exception raised when a quadratic equation has no real roots."""
+
+    pass
+
+
+def quadratic(a: float, b: float, c: float) -> tuple[float, float]:
     """
     Solve a quadratic equation of the form ax^2 + bx + c = 0.
 
@@ -12,7 +17,11 @@ def quadratic(a: float, b: float, c: float) -> Union[tuple[float, float], None]:
         c (float): Constant term.
 
     Returns:
-        tuple[float, float] or None: A tuple of two real roots if they exist, or None if no real roots exist.
+        tuple[float, float]: A tuple of two real roots if they exist.
+
+    Raises:
+        ValueError: If 'a' is zero.
+        NoRealRootsError: If no real roots exist.
     """
     if a == 0:
         raise ValueError(
@@ -26,20 +35,21 @@ def quadratic(a: float, b: float, c: float) -> Union[tuple[float, float], None]:
         x_2 = (-b - math.sqrt(discriminant)) / (2 * a)
         return x_1, x_2
     else:
-        return None
+        raise NoRealRootsError("No real solutions exist for the given coefficients.")
 
 
 def main():
-    a = float(input('please enter a number:'))
-    b = float(input('please enter a number:'))
-    c = float(input('please enter a number:'))
-    sol = quadratic(a, b, c)
-    if sol is not None:
-        sol_1, sol_2 = sol
-        print(f'The two roots are: {sol_1}, {sol_2}.')
-    else:
-        print('No real solutions exist for the given coefficients.')
+    try:
+        a = float(input("please enter a number:"))
+        b = float(input("please enter a number:"))
+        c = float(input("please enter a number:"))
+        sol_1, sol_2 = quadratic(a, b, c)
+        print(f"The two roots are: {sol_1}, {sol_2}.")
+    except ValueError as ve:
+        print(f"ValueError: {ve}")
+    except NoRealRootsError as nre:
+        print(f"NoRealRootsError: {nre}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

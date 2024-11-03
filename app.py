@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, flash, redirect, render_template, request, url_for
 
-from calculator import quadratic
+from calculator import NoRealRootsError, quadratic
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key"  # Change this to a random string for security
 
 
 @app.route("/")
@@ -10,7 +11,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/hello/")
+@app.route("/hello")
 @app.route("/hello/<name>")
 def hello(name=None):
     if name:
@@ -41,23 +42,27 @@ def page_not_found(e):
 #                 root_2=roots[1],
 #             )
 #         else:
-#             return render_template("solver_form.html", error=True)
-#     return render_template("solver_form.html", error=None)
+#             return render_template("solver_form.html")
+#     return render_template("solver_form.html")
 
 
-@app.get("/solve/")
+@app.get("/solve")
 def solver_get():
-    return render_template("solver_form.html", error=None)
+    return render_template("solver_form.html")
 
 
-@app.post("/solve/")
+@app.post("/solve")
 def solver_post():
-    a = float(request.form.get("a"))
-    b = float(request.form.get("b"))
-    c = float(request.form.get("c"))
-    roots = quadratic(a, b, c)
+    try:
+        a = float(request.form.get("a"))
+        b = float(request.form.get("b"))
+        c = float(request.form.get("c"))
+    except ValueError:
+        flash("Please enter valid numbers for coefficients.", "error")
+        return redirect(url_for("solver_get"))
 
-    if roots:
+    try:
+        roots = quadratic(a, b, c)
         return render_template(
             "solver_result.html",
             a=a,
@@ -66,11 +71,15 @@ def solver_post():
             root_1=roots[0],
             root_2=roots[1],
         )
-    else:
-        return render_template("solver_form.html", error=True)
+    except NoRealRootsError:
+        flash("This equation does not have real number solution.", "error")
+        return redirect(url_for("solver_get"))
+    except ValueError as ve:
+        flash(str(ve), "error")
+        return redirect(url_for("solver_get"))
 
 
-@app.route("/grade/")
+@app.route("/grade")
 def show_grades():
     persons = [
         {"name": "John", "grade": 80},
