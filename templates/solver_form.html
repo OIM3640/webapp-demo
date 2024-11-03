@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quadratic Equation Solver</title>
     <style>
-      .red,
       .error {
         color: red;
       }
@@ -14,18 +13,21 @@
 
   <body>
     <h1>Quadratic Equation Solver</h1>
-    <form method="POST" name="solver">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
-            <p class="{{ category }}">{{ message }}</p>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
+    <!-- <form method="POST" action="{{ url_for('solve_post') }}"> -->
+    <!-- <form method="POST" action="/solve"> -->
+    <form method="POST">
+      <!-- No action if form is submitted to the same URL -->
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <p class="{{ category }}">{{ message }}</p>
+      {% endfor %} {% endif %} {% endwith %}
+      <!-- See documentation for more information on flashing messages. https://flask.palletsprojects.com/en/stable/patterns/flashing/#flashing-with-categories -->
+
       <p>Please enter three coefficients of a quadratic equation:</p>
       <p>
-        <input type="text" size="4" name="a" />x<sup>2</sup> +
-        <input type="text" size="4" name="b" />x +
+        <input type="text" size="4" name="a" /> x<sup>2</sup> +
+        <input type="text" size="4" name="b" /> x +
         <input type="text" size="4" name="c" /> = 0
       </p>
       <p>

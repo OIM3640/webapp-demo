@@ -24,7 +24,7 @@ def page_not_found(e):
     return render_template("404.html")
 
 
-# @app.route("/solve/", methods=["GET", "POST"])
+# @app.route("/solve", methods=["GET", "POST"])
 # def solve():
 #     if request.method == "POST":
 #         a = float(request.form["a"])
@@ -47,19 +47,19 @@ def page_not_found(e):
 
 
 @app.get("/solve")
-def solver_get():
+def solve_get():
     return render_template("solver_form.html")
 
 
 @app.post("/solve")
-def solver_post():
+def solve_post():
     try:
         a = float(request.form.get("a"))
         b = float(request.form.get("b"))
         c = float(request.form.get("c"))
     except ValueError:
         flash("Please enter valid numbers for coefficients.", "error")
-        return redirect(url_for("solver_get"))
+        return redirect(url_for("solve_get"))
 
     try:
         roots = quadratic(a, b, c)
@@ -73,10 +73,10 @@ def solver_post():
         )
     except NoRealRootsError:
         flash("This equation does not have real number solution.", "error")
-        return redirect(url_for("solver_get"))
-    except ValueError as ve:
-        flash(str(ve), "error")
-        return redirect(url_for("solver_get"))
+        return redirect(url_for("solve_get"))
+    except ValueError as e:
+        flash(str(e), "error")
+        return redirect(url_for("solve_get"))
 
 
 @app.route("/grade")
