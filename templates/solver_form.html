@@ -13,6 +13,7 @@
 
   <body>
     <h1>Quadratic Equation Solver</h1>
+
     <!-- <form method="POST" action="{{ url_for('solve_post') }}"> -->
     <!-- <form method="POST" action="/solve"> -->
     <form method="POST">
@@ -24,15 +25,15 @@
       {% endfor %} {% endif %} {% endwith %}
       <!-- See documentation for more information on flashing messages. https://flask.palletsprojects.com/en/stable/patterns/flashing/#flashing-with-categories -->
 
-      <p>Please enter three coefficients of a quadratic equation:</p>
-      <p>
+      <div>Please enter three coefficients of a quadratic equation:</div>
+      <div>
         <input type="text" size="4" name="a" /> x<sup>2</sup> +
         <input type="text" size="4" name="b" /> x +
         <input type="text" size="4" name="c" /> = 0
-      </p>
-      <p>
+      </div>
+      <div>
         <input type="submit" value="Solve" />
-      </p>
+      </div>
     </form>
   </body>
 </html>
