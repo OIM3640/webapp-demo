@@ -8,12 +8,14 @@ app.secret_key = "your_secret_key"  # Change this to a random string for securit
 
 @app.route("/")
 def index():
+    """Render the index page."""
     return render_template("index.html")
 
 
 @app.route("/hello")
 @app.route("/hello/<name>")
 def hello(name=None):
+    """Render a page that says hello to the user."""
     if name:
         name = name.upper()
     return render_template("hello.html", name=name)
@@ -21,11 +23,15 @@ def hello(name=None):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """Render a custom 404 error page."""
     return render_template("404.html")
 
 
 # @app.route("/solve", methods=["GET", "POST"])
 # def solve():
+#     """
+#     Render a form to solve a quadratic equation if the request method is GET. If the request method is POST, solve the equation and render the result.
+#     """
 #     if request.method == "POST":
 #         a = float(request.form["a"])
 #         b = float(request.form["b"])
@@ -48,11 +54,13 @@ def page_not_found(e):
 
 @app.get("/solve")
 def solve_get():
+    """Render a form to solve a quadratic equation."""
     return render_template("solver_form.html")
 
 
 @app.post("/solve")
 def solve_post():
+    """Solve a quadratic equation and render the result."""
     try:
         a = float(request.form.get("a"))
         b = float(request.form.get("b"))
@@ -81,13 +89,14 @@ def solve_post():
 
 @app.route("/grade")
 def show_grades():
-    persons = [
+    """Render a page with a list of grades."""
+    students = [
         {"name": "John", "grade": 80},
         {"name": "Paul", "grade": 90},
         {"name": "George", "grade": 85},
         {"name": "Ringo", "grade": 95},
     ]
-    return render_template("grades.html", grades=persons)
+    return render_template("grades.html", grades=students)
 
 
 if __name__ == "__main__":
