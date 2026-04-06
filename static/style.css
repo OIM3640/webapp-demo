@@ -1,0 +1,273 @@
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #1a1a2e;
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: #4361ee;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Navigation ── */
+nav {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav .nav-brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+nav .nav-brand:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+}
+
+nav ul a {
+  color: #ced4da;
+  font-size: 0.9rem;
+}
+
+nav ul a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Main Content ── */
+main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Flash Messages ── */
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.flash.error {
+  background: #fce4e4;
+  color: #c0392b;
+  border: 1px solid #f5c6cb;
+}
+
+.flash.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* ── Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* ── Headings ── */
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Forms ── */
+form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+button,
+input[type="submit"] {
+  background: #4361ee;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background: #3a56d4;
+}
+
+/* ── Result / Info Blocks ── */
+.result {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.result p {
+  margin-bottom: 0.4rem;
+}
+
+/* ── Message List ── */
+.message-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.message-list li {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-meta {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+/* ── Astronaut Table ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.65rem 1rem;
+}
+
+th {
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* ── AI Response ── */
+.ai-response {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+  border-top: 1px solid #dee2e6;
+  margin-top: 2rem;
+}

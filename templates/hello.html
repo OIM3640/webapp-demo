@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello from Flask</title>
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    {% if name %}
-    <h1>Hello {{ name }}!</h1>
-    {% else %}
-    <h1>Hello, World!</h1>
-    {% endif %}
-  </body>
-</html>
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+{% if name %}
+  <h1>Hello, {{ name }}!</h1>
+{% else %}
+  <h1>Hello, World!</h1>
+{% endif %}
+
+<p>Try visiting <code>/hello/yourname</code> to see a personalized greeting.</p>
+{% endblock %}

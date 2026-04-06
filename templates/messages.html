@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Message Board{% endblock %}
+
+{% block content %}
+<h1>Message Board</h1>
+<p>Post a message for the class (1–140 characters).</p>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Your name</label>
+    <input type="text" id="name" name="name" placeholder="e.g. Alice" />
+  </div>
+  <div class="form-group">
+    <label for="body">Message</label>
+    <input type="text" id="body" name="body" maxlength="140" placeholder="Say something..." />
+  </div>
+  <button type="submit">Send</button>
+</form>
+
+{% if messages %}
+  <h2>Recent Messages</h2>
+  <ul class="message-list">
+    {% for msg in messages %}
+      <li>
+        <strong>{{ msg.name }}</strong>: {{ msg.body }}
+        {% if msg.timestamp %}
+          <span class="message-meta">{{ msg.timestamp }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

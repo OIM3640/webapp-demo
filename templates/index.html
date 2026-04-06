@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homepage</title>
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    <h1>Home</h1>
-    <p>
-      <a href="{{ url_for('solve_get') }}">Solve Quadratic Equation</a>
-    </p>
+{% block title %}Flask Demo — Home{% endblock %}
 
-    <p>
-      <a href="{{ url_for('hello') }}">Hello</a>
-    </p>
-  </body>
-</html>
+{% block content %}
+<h1>Welcome to Flask Demo</h1>
+<p>A collection of mini-apps that demonstrate core Flask concepts.</p>
+
+<div class="card-grid">
+  <a href="{{ url_for('hello') }}" class="card">
+    <h3>Hello</h3>
+    <p>Dynamic routing and template variables</p>
+  </a>
+  <a href="{{ url_for('ai_get') }}" class="card">
+    <h3>AI Assistant</h3>
+    <p>Form handling and OpenAI API integration</p>
+  </a>
+  <a href="{{ url_for('messages_page') }}" class="card">
+    <h3>Message Board</h3>
+    <p>GET and POST requests to an external API</p>
+  </a>
+  <a href="{{ url_for('weather_get') }}" class="card">
+    <h3>Weather</h3>
+    <p>API calls with user input and API key management</p>
+  </a>
+  <a href="{{ url_for('astronauts') }}" class="card">
+    <h3>Astronauts</h3>
+    <p>Fetching and displaying JSON data</p>
+  </a>
+</div>
+{% endblock %}

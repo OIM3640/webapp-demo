@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Flask Demo{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('index') }}" class="nav-brand">Flask Demo</a>
+      <ul>
+        <li><a href="{{ url_for('hello') }}">Hello</a></li>
+        <li><a href="{{ url_for('ai_get') }}">AI Assistant</a></li>
+        <li><a href="{{ url_for('messages_page') }}">Messages</a></li>
+        <li><a href="{{ url_for('weather_get') }}">Weather</a></li>
+        <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      {% with msgs = get_flashed_messages(with_categories=true) %}
+        {% if msgs %}
+          {% for category, message in msgs %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>Built with <a href="https://flask.palletsprojects.com/">Flask</a></p>
+    </footer>
+  </body>
+</html>

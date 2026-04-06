@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Astronauts in Space{% endblock %}
+
+{% block content %}
+<h1>Astronauts in Space Right Now</h1>
+<p>There are currently <strong>{{ count }}</strong> people in space.</p>
+
+{% if people %}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Spacecraft</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for person in people %}
+        <tr>
+          <td>{{ person.name }}</td>
+          <td>{{ person.craft }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+{% endblock %}
